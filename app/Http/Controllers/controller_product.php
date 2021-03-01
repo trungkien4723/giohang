@@ -35,8 +35,6 @@ class controller_product extends Controller
             'code' => 200,
             'message' => 'success'
         ], 200);
-        //session()->flush('cart', $cart);
-        echo"<pre>";print_r(session()->get('cart'));
     }
 
     public function showCart()

@@ -17,19 +17,28 @@ $(document).ready(function () {
     }
   });
 });
-$(document).ready(function (event) {
-  event.preventDefault();
-  var url = $(this).data('url');
-  $(".add_to_cart").click(function () {
+$(document).ready(function () {
+  $(".add_to_cart").click(function (event) {
+    event.preventDefault();
+    var url = $(this).data('url');
     $.ajax({
+      type: 'GET',
       url: url,
       dataType: 'json',
       success: function success(data) {
-        if (data.code == 200) {
+        if (data.code === 200) {
           alert('Them thanh cong!');
+        } else {
+          alert('Chua them!');
         }
+
+        console.log(data);
       },
-      error: function error(data) {}
+      error: function error(xhr, ajaxOptions, thrownError) {
+        console.log(xhr);
+        console.log(ajaxOptions);
+        console.log(thrownError);
+      }
     });
   });
 });
