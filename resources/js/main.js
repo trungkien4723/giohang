@@ -16,7 +16,8 @@ $(document).ready(function(){
     });
   });
 
-  $(document).ready(function(){      
+  $(document).ready(function(){
+      //lay url cho nut them vao gio      
     $(".add_to_cart").click(function(event){
         event.preventDefault();     
         let url = $(this).data('url');  
@@ -31,6 +32,33 @@ $(document).ready(function(){
                     alert('Them thanh cong!');
                 }
                 else{alert('Chua them!');}
+                console.log(data);
+            },
+            error: function(xhr, ajaxOptions, thrownError)
+            {
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+    });
+
+    $(".delete_cart").click(function(event){
+        event.preventDefault();     
+        let url = $('.cart').data('url');  
+        let id = $(this).data('id')
+        $.ajax({
+            type:'GET',
+            url: url,
+            data: {id: id},
+            success: function(data)
+            {
+                if(data.code === 200)
+                {
+                    alert('Xoa thanh cong!');
+                    $('.cart_wrapper').html(data.cart_component);
+                }
+                else{alert('Chua Xoa!');}
                 console.log(data);
             },
             error: function(xhr, ajaxOptions, thrownError)

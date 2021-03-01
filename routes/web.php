@@ -20,4 +20,6 @@ Route::get('/', function () {
 
 Route::get("/products","App\Http\Controllers\controller_product@index")->name("homepage");
 Route::get("/products/add-to-cart/{id}","App\Http\Controllers\controller_product@addToCart")->name("addToCart");
+
 Route::get("/products/shopping-cart/","App\Http\Controllers\controller_product@showCart")->name("showCart");
+Route::get("/products/delete-cart/","App\Http\Controllers\controller_product@deleteCart")->name("deleteCart");

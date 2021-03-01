@@ -52,37 +52,9 @@
     </div>
     
 <!--body-->
-    <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="showproducts">  
-                <div class="row">
-                    <h2>Shopping cart</h2>
-                </div>
-                <div class="row">
-                    <table class="cart-table">
-                        <tr>
-                            <th colspan = "2">San pham</th>
-                            <th>Gia san pham</th>
-                            <th>So luong</th>
-                            <th>Tong tien</th>
-                        </tr>
-                        @if (is_array($cart) || is_object($cart))
-                        
-                        @foreach($cart as $cartItems)
-                        <tr>
-                            <td><img src="{{$cartItems['image']}}" alt="No_pic"></td>
-                            <td>{{$cartItems['name']}}</td>
-                            <td>{{$cartItems['price']}}</td>
-                            <td>{{$cartItems['quantity']}}</td>
-                        </tr>
-                        @endforeach
-                        
-                        @endif
-                    </table>
-                </div>
-            </div>      
-        </div>
-    </div>
+<div class="cart_wrapper">
+    @include('components.cart_component')
+</div>    
 
 </body>
 </html>
