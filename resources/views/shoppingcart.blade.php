@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Shopping cart</title>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
@@ -52,37 +52,9 @@
     </div>
     
 <!--body-->
-    <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="showproducts">  
-                <div class="row">
-                    <h2>Shopping cart</h2>
-                </div>
-                <div class="row">
-                    <table class="cart-table">
-                        <tr>
-                            <th colspan = "2">San pham</th>
-                            <th>Gia san pham</th>
-                            <th>So luong</th>
-                            <th>Tong tien</th>
-                        </tr>
-                        @if (is_array($cart) || is_object($cart))
-                        {
-                        @foreach($cart as $cartItems)
-                        <tr>
-                            <td>{{$cartItems['image']}}</td>
-                            <td>{{$cartItems['name']}}</td>
-                            <td>{{$cartItems['price']}}</td>
-                            <td>{{$cartItems['quantity']}}</td>
-                        </tr>
-                        @endforeach
-                        }
-                        @endif
-                    </table>
-                </div>
-            </div>      
-        </div>
-    </div>
+<div class="cart_wrapper">
+    @include('components.cart_component')
+</div>    
 
 </body>
 </html>

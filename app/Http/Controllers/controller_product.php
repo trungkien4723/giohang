@@ -15,6 +15,7 @@ class controller_product extends Controller
 
     public function addToCArt($id)
     {
+        //session()->flush();
         $product = product::find($id);
         $cart = session()->get('cart');
         if(isset($cart[$id]))
@@ -35,13 +36,27 @@ class controller_product extends Controller
             'code' => 200,
             'message' => 'success'
         ], 200);
-        //session()->flush('cart', $cart);
-        echo"<pre>";print_r(session()->get('cart'));
     }
 
     public function showCart()
     {       
         $cart = session()->get('cart');
         return view("shoppingcart",compact('cart'));
+    }
+
+    public function deleteCart(Request $request)
+    {       
+        if($request->id)
+        {
+            $cart = session()->get('cart');
+            unset($cart[$request->id]);
+            session()->put('cart', $cart);
+            $cart = session()->get('cart');
+            $cartComponent = view("shoppingcart", compact('cart'))->render();
+            return response()->json([
+                'cart_component' => $cartComponent,
+                'code' => 200
+            ], 200);
+        }
     }
 }
