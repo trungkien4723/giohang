@@ -16,9 +16,8 @@ $(document).ready(function(){
     });
   });
 
-  $(document).ready(function(){
-      //lay url cho nut them vao gio      
-    $(".add_to_cart").click(function(event){
+  $(document).ready(function(){     
+    $(document).on("click",".add_to_cart",function(event){
         event.preventDefault();     
         let url = $(this).data('url');  
         $.ajax({
@@ -43,7 +42,7 @@ $(document).ready(function(){
         });
     });
 
-    $(".delete_cart").click(function(event){
+    $(document).on("click",".delete_cart",function(event){
         event.preventDefault();     
         let url = $('.cart').data('url');  
         let id = $(this).data('id')
@@ -69,4 +68,58 @@ $(document).ready(function(){
             }
         });
     });
-  });
+
+    $(document).on("click",".incr_cart",function(event){
+        event.preventDefault();     
+        let url = $('.cart-table').data('url');  
+        let id = $(this).data('id')
+        let quantity = parseInt($(this).parents('tr').find('input.quantity').val()) + 1;
+        $.ajax({
+            type:'GET',
+            url: url,
+            data: {id: id, quantity: quantity},
+            success: function(data)
+            {
+                if(data.code === 200)
+                {
+                    $('.cart_wrapper').html(data.cart_component);
+                }else{alert('chua cong!');}
+                console.log(data);
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError)
+            {
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+    });
+
+    $(document).on("click",".decr_cart",function(event){
+        event.preventDefault();     
+        let url = $('.cart-table').data('url');  
+        let id = $(this).data('id')
+        let quantity = parseInt($(this).parents('tr').find('input.quantity').val()) - 1;
+        $.ajax({
+            type:'GET',
+            url: url,
+            data: {id: id, quantity: quantity},
+            success: function(data)
+            {
+                if(data.code === 200)
+                {
+                    $('.cart_wrapper').html(data.cart_component);
+                }else{alert('chua tru!');}
+                console.log(data);
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError)
+            {
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+    });
+});

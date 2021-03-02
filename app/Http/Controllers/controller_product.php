@@ -52,7 +52,23 @@ class controller_product extends Controller
             unset($cart[$request->id]);
             session()->put('cart', $cart);
             $cart = session()->get('cart');
-            $cartComponent = view("shoppingcart", compact('cart'))->render();
+            $cartComponent = view("components.cart_component", compact('cart'))->render();
+            return response()->json([
+                'cart_component' => $cartComponent,
+                'code' => 200
+            ], 200);
+        }
+    }
+
+    public function updateCart(Request $request)
+    {       
+        if($request->id && $request->quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$request->id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
+            $cart = session()->get('cart');
+            $cartComponent = view("components.cart_component", compact('cart'))->render();
             return response()->json([
                 'cart_component' => $cartComponent,
                 'code' => 200
