@@ -23,3 +23,4 @@ Route::get("/products/add-to-cart/{id}","App\Http\Controllers\controller_product
 
 Route::get("/products/shopping-cart/","App\Http\Controllers\controller_product@showCart")->name("showCart");
 Route::get("/products/delete-cart/","App\Http\Controllers\controller_product@deleteCart")->name("deleteCart");
+Route::get("/products/update-cart/","App\Http\Controllers\controller_product@updateCart")->name("updateCart");

@@ -45,7 +45,7 @@
                     </div>
                     <form class="d-flex">
                             <a class="btn bi bi-search nav-item" href="#"></a>
-                            <a class="btn bi bi-cart nav-item" href="{{route('showCart')}}"></a>  
+                            <a class="btn bi bi-cart nav-item" href="{{route('showCart')}}"></a><span style="float:right;"><?php $t = 0; foreach(session()->get('cart') as $a){$t+=$a['quantity'];} echo $t;?></span>  
                     </form>
                 </nav>                  
         </div>           
