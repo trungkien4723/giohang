@@ -41,7 +41,7 @@
                     <h2>Shopping cart</h2>
                 </div>
                 <div class="row">
-                    <table class="cart-table">
+                    <table class="cart-table" data-url="{{route('updateCart')}}">
                         <tr>
                             <th colspan = "2">San pham</th>
                             <th>Gia san pham</th>
@@ -52,14 +52,14 @@
                         <?php $total = 0; ?>
                         @foreach($cart as $id => $cartItems)
                         <?php $total += $cartItems['price']*$cartItems['quantity']?>
-                        <tr>
+                        <tr class="cart_row">
                             <td><img src="{{$cartItems['image']}}" alt="No_pic" style="max-width:40%; object-fit:contain;"></td>
                             <td>{{$cartItems['name']}}</td>
                             <td>{{number_format($cartItems['price'])}} VND</td>
                             <td>
-                                {{$cartItems['quantity']}}
-                                <button class="btn btn-primary incr_cart" onclick=" {{$cartItems['quantity'] += 1 }} ">+</button>
-                                <button class="btn btn-primary decr_cart" onclick=" {{$cartItems['quantity'] -= 1 }} ">-</button>
+                                <input type="text" class="quantity" value="{{$cartItems['quantity']}}">
+                                <button class="btn btn-primary incr_cart" data-id=" {{$id}} ">+</button>
+                                <button class="btn btn-primary decr_cart" data-id=" {{$id}} ">-</button>
                             </td>
                             <td>{{number_format($cartItems['price']*$cartItems['quantity'])}} VND</td>
                             <td><a href="#" class="delete_cart" style="text-decoration:none; color:red;" data-id=" {{$id}} ">X</a></td>
