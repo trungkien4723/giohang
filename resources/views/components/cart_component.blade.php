@@ -27,7 +27,6 @@
                     </div>
                     <form class="d-flex">
                             <button type="button" class="bi bi-search nav-item"></button>
-                            <button type="button" class="bi bi-cart nav-item"></button>  
                     </form>  
                 </nav>                  
         </div>           

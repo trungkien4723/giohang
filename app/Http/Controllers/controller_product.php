@@ -16,6 +16,7 @@ class controller_product extends Controller
     public function addToCArt($id)
     {
         //session()->flush();
+        $products = product::Latest()->get();
         $product = product::find($id);
         $cart = session()->get('cart');
         if(isset($cart[$id]))
@@ -32,7 +33,10 @@ class controller_product extends Controller
             ];
         }
         session()->put('cart', $cart);
+        $cart = session()->get('cart');
+        $cartComponent = view("components.product_component", compact('cart','products'))->render();
         return response()->json([
+            'product_component' => $cartComponent,
             'code' => 200,
             'message' => 'success'
         ], 200);

@@ -29,6 +29,7 @@ $(document).ready(function(){
                 if(data.code === 200)
                 {
                     alert('Them thanh cong!');
+                    $('.cart_wrapper').html(data.product_component);
                 }
                 else{alert('Chua them!');}
                 console.log(data);
